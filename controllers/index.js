@@ -8,4 +8,9 @@ router.use('/', homeRoutes);
 router.use('/dashboard', dashBoardRoutes);
 router.use('/api', apiRoutes);
 
+router.use((req, res) => {
+    //404 page
+    res.send("<h1>Wrong Route!</h1>")
+  });
+
 module.exports = router;
