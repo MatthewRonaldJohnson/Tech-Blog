@@ -21,6 +21,56 @@ router.post('/', async (req,res) => {
     res.json(newUserData)
 })
 
+// /api/user/login
+router.post('/login', async (req, res) => {
+    try {
+      const dbUserData = await User.findOne({
+        where: {
+          user_name: req.body.userName,
+        },
+      });
+  
+      if (!dbUserData) {
+        res
+          .status(400)
+          .json({ message: 'Incorrect user or password. Please try again!' });
+        return;
+      }
+  
+      const validPassword = await dbUserData.checkPassword(req.body.password);
+  
+      if (!validPassword) {
+        res
+          .status(400)
+          .json({ message: 'Incorrect user or password. Please try again!' });
+        return;
+      }
+  
+      req.session.save(() => {
+        req.session.userId = dbUserData.id;
+  
+        res
+          .status(200)
+          .json({ user: dbUserData, message: 'You are now logged in!' });
+      });
+    } catch (err) {
+      console.log(err);
+      res.status(500).json(err);
+
+    }
+  });
+
+  // /api/user/logout
+router.post('/logout', (req, res) => {
+    if (req.session.userId) {
+      req.session.destroy(() => {
+        res.status(204).end();
+      });
+    } else {
+      res.status(404).end();
+    }
+  });
+
 router.put('/:id', async (req,res) => {
     const updatedUserData = await User.update(req.body, {where: {id: req.params.id}})
     res.json(updatedUserData)

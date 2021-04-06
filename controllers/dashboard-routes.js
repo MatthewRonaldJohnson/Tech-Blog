@@ -1,7 +1,7 @@
 const router = require('express').Router();
 
 router.get('/', async (req,res) => {
-    res.end('👌')
+    res.end('under construction')
 })
 
 router.post('/', async (req,res) => {

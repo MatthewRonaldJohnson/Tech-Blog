@@ -12,16 +12,50 @@
 </head>
 
 <body>
-    {{{ body }}}
+    <div class="bg-dark text-white container-fluid mb-3">
+        <nav class="pl-4 pt-2 row">
+            <ul class="nav">
+                <li class="nav-item">
+                    <a class="nav-link active" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/dashboard">Dashboard</a>
+                </li>
+                {{#if loggedIn}}
+                <li class="nav-item">
+                    <a class="nav-link" id="logout">Logout</a>
+                </li>
+                {{else}}
+                <li class="nav-item">
+                    <a class="nav-link" href="/login">Login</a>
+                </li>
+                {{/if}}
+            </ul>
+        </nav>
+        <div class="p-5 row">
+            <h1 class='col-12 col-md-6 col-lg-5 col-xl-4 bg-light text-dark border rounded text-center py-1'>The Tech
+                Blog</h1>
+        </div>
+    </div>
+    <main class="container">
+        {{{ body }}}
+    </main>
 
-<!-- boostrap required js -->
+
+    {{!-- <!-- boostrap required js -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
         crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
-        crossorigin="anonymous"></script>
-    <script src="post-script.js"></script>
+        crossorigin="anonymous"></script> --}}
+
+    {{#if login}}
+    <script src="/js/login.js"></script>
+    {{/if}}
+    {{#if loggedIn}}
+    <script src="/js/logout.js"></script>
+    {{/if}}
 </body>
 
 </html>

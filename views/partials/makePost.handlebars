@@ -1,0 +1,13 @@
+<section class="row py-3">
+            <a href='/api/post/{{id}}' class="card w-100">
+                <div class="card-header d-flex justify-content-between align-items-end">
+                    <h3>{{title}}</h3>
+                    <h6>Posted by {{user.user_name}} On {{format_date createdAt}}</h6>
+                </div>
+                <div class="card-body">
+                    <p class="card-text">
+                        {{body}}
+                    </p>
+                </div>
+            </a>
+        </section>
