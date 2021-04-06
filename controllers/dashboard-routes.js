@@ -1,17 +1,21 @@
-const { Post } = require('../models');
+const { Post, User } = require('../models');
 const sequelize = require('../config/connection')
 const checkAuth = require('../utils/checkAuth')
 
 const router = require('express').Router();
 
 router.get('/', checkAuth, async (req,res) => {
-    //assume user_id 1 is logged in
     const rawPostData = await Post.findAll({
         where: {user_id: req.session.userId},
-        order: sequelize.literal('created_at DESC')
+        order: sequelize.literal('post.created_at DESC')
     });
     const postData = rawPostData.map(post => post.get());
-    res.render('dashboardpage', {postData, loggedIn: true})
+    const rawUserData = await User.findByPk(req.session.userId);
+    const userData = rawUserData.get();
+    for (let i = 0; i < postData.length; i++) {
+        postData[i].userName = userData.user_name;
+    }
+    res.render('dashboardpage', {postData, loggedIn: req.session.userId? true:false})
 })
 
 router.get('/newPost', (req,res) => {
