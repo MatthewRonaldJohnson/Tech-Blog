@@ -1,5 +1,7 @@
-{{> makePost post}}
+<main class="container">
+    {{> makePost post}}
 
-{{#each comments as |comment|}}
-{{> makeComment comment}}
-{{/each}}
+    {{#each comments as |comment|}}
+    {{> makeComment comment}}
+    {{/each}}
+</main>

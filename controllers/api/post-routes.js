@@ -44,6 +44,7 @@ router.post('/', async (req, res) => {
     //   "user_id": 1
     // }
     const newPostData = await Post.create(req.body)
+    console.log(newPostData.id);
     res.json(newPostData)
 })
 

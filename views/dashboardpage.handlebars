@@ -1,0 +1,15 @@
+<main class="container">
+
+    <div class="row py-3" id="btn-row">
+        <a href="/dashboard/newPost" class="w-100">
+        <button type="button" class="btn btn-dark btn-block" id="addComment">Create New Post</button>
+        </a>
+    </div>
+    
+    {{#each postData as |post|}}
+    {{> makePost}}
+    {{/each}}
+
+    
+
+</main>
