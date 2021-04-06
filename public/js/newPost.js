@@ -10,17 +10,15 @@ newPostForm.addEventListener('submit', async function (e) {
         return;
     }
     //build new post in DB w/ these values and user id, then link user to Post page for that post
-    await createNewPost(buildNewPost(postTitle.value, postBody.value, 1))
+    const newPostId = await createNewPost(buildNewPost(postTitle.value, postBody.value))
     //won't go to api route, and id number will be injected into string 
-    console.log('now go to new page')
-    //location = `http://localhost:3001/api/post/${id}`;
+    location = `http://localhost:3001/post/${newPostId}`;
 })
 
-function buildNewPost(title, body, user_id) {
+function buildNewPost(title, body) {
     const newPost = {
         title,
         body,
-        user_id,
     };
     return newPost;
 }
@@ -33,5 +31,5 @@ async function createNewPost(newPost) {
         },
         body: JSON.stringify(newPost)
     })
-    console.log(response, 'added to db');
+    return response.json()
 }

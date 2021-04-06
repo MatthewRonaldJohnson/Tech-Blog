@@ -12,7 +12,7 @@ router.get('/', async (req, res) => {
     });
     //serialize that data
     const cleanPostData = postData.map(post => post.get());
-    res.render('homepage', { cleanPostData, userId: req.session.UserId })
+    res.render('homepage', { cleanPostData, loggedIn: req.session.userId? true:false })
 })
 
 router.get('/login', (req, res) => {
@@ -33,7 +33,11 @@ router.get('/post/:id', async (req, res) => {
     });
     //serialize post data
     const post = postData.get();
+    
+    const user = JSON.parse(JSON.stringify(post.user));
+    post.userName = user.user_name;
     console.log(post)
+
 
     const commentData = await Comment.findAll({
         where: { post_id: post.id },
@@ -45,6 +49,7 @@ router.get('/post/:id', async (req, res) => {
 
     const comments = commentData.map((comment) => comment.get())
     console.log(comments)
+
 
     res.render('postpage', { post, comments })
 })

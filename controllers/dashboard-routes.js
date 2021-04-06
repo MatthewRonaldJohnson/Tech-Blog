@@ -1,12 +1,13 @@
 const { Post } = require('../models');
 const sequelize = require('../config/connection')
+const checkAuth = require('../utils/checkAuth')
 
 const router = require('express').Router();
 
-router.get('/', async (req,res) => {
+router.get('/', checkAuth, async (req,res) => {
     //assume user_id 1 is logged in
     const rawPostData = await Post.findAll({
-        where: {user_id: 1},
+        where: {user_id: req.session.userId},
         order: sequelize.literal('created_at DESC')
     });
     const postData = rawPostData.map(post => post.get());
