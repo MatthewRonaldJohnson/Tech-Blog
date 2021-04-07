@@ -1,10 +1,9 @@
 # Tech-Blog
 Homework 14: MVC Tech Blog using express, sequelize, and handlebars 
 
-## Deployed Application
+## [Deployed Application](https://mrj-tech-blog.herokuapp.com/)
 
-This application will be deployed on Heroku. At the time of writing heroku's verify users feature is down so I cannot verify my account to gain acess to the JAWSDB that would power this app.  
-To try and show off the apps functionality I have made a short walkthrough video here: https://youtu.be/T3OLHyTzTK8 
+This application is deployed using heroku [here](https://mrj-tech-blog.herokuapp.com/).
 
 ## Description
 
