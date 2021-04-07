@@ -1,26 +1,9 @@
 const router = require('express').Router();
 const { User } = require('../../models')
 
-router.get('/', async (req, res) => {
-  const userData = await User.findAll({
-    attributes: ['id', 'user_name']
-  });
-  res.json(userData)
-})
-
-router.get('/:id', async (req, res) => {
-  const userData = await User.findByPk(req.params.id, {
-    attributes: ['id', 'user_name']
-  });
-  if (userData === null) res.end('Not found')
-  res.json(userData)
-})
-
-//create new user then sign them in
+//create new user thenlog them in
 router.post('/', async (req, res) => {
-  console.log('req.body: ',req.body)
   const newUserData = await User.create(req.body);
-  console.log('newuserData: ',newUserData)
   req.session.save(() => {
     req.session.userId = newUserData.id;
 
@@ -30,7 +13,7 @@ router.post('/', async (req, res) => {
   });
 })
 
-// /api/user/login
+// login exisiting user
 router.post('/login', async (req, res) => {
   try {
     const dbUserData = await User.findOne({
@@ -69,7 +52,7 @@ router.post('/login', async (req, res) => {
   }
 });
 
-// /api/user/logout
+// log out user
 router.post('/logout', (req, res) => {
   if (req.session.userId) {
     req.session.destroy(() => {

@@ -18,12 +18,9 @@ router.get('/', checkAuth, async (req,res) => {
     res.render('dashboardpage', {postData, loggedIn: req.session.userId? true:false})
 })
 
-router.get('/newPost', (req,res) => {
+router.get('/newPost', checkAuth, (req,res) => {
     res.render('newPost')
 })
 
-router.post('/', async (req,res) => {
-    res.end(JSON.stringify(req.body))
-})
 
 module.exports = router;
