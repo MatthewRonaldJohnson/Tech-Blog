@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const { Post, Comment, User } = require('../../models')
+const checkAuth = require('../../utils/checkAuth')
 
 router.get('/', async (req, res) => {
     const postData = await Post.findAll({
@@ -53,7 +54,7 @@ router.put('/:id', async (req, res) => {
     res.json(updatedPostData)
 })
 
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', checkAuth, async (req, res) => {
     const deletedPost = await Post.destroy({ where: { id: req.params.id } })
     res.json(deletedPost)
 })

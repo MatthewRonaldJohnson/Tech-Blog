@@ -4,7 +4,6 @@ const postBody = document.getElementById('body');
 
 newPostForm.addEventListener('submit', async function (e) {
     e.preventDefault();
-    console.log(postTitle.value, postBody.value);
     if(!postTitle.value || !postBody.value){
         alert("Your post must have a title and body!");
         return;
