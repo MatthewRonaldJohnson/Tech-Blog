@@ -2,6 +2,7 @@ require('dotenv').config();
 
 const Sequelize = require('sequelize');
 
+//just messing with the ternary operator I realize this ins't the most readable
 const sequelize = process.env.JAWSDB_URL ?
   new Sequelize(process.env.JAWSDB_URL)
   :
