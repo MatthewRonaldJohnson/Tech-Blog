@@ -10,7 +10,7 @@ newPostForm.addEventListener('submit', async function (e) {
     }
     //build new post in DB w/ these values and user id, then link user to Post page for that post
     const newPostId = await createNewPost(buildNewPost(postTitle.value, postBody.value))
-    location = `http://localhost:3001/post/${newPostId}`;
+    location = `/post/${newPostId}`;
 })
 
 function buildNewPost(title, body) {
