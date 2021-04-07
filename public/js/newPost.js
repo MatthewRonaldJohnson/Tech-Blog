@@ -11,7 +11,6 @@ newPostForm.addEventListener('submit', async function (e) {
     }
     //build new post in DB w/ these values and user id, then link user to Post page for that post
     const newPostId = await createNewPost(buildNewPost(postTitle.value, postBody.value))
-    //won't go to api route, and id number will be injected into string 
     location = `http://localhost:3001/post/${newPostId}`;
 })
 

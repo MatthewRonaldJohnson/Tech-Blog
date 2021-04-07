@@ -4,4 +4,20 @@
     {{#each comments as |comment|}}
     {{> makeComment comment}}
     {{/each}}
+
+    <div class="row py-3" id="btn-row">
+            <button type="button" class="btn btn-dark btn-block" id="addComment">Add a comment</button>
+        </div>
+
+        <div class="row">
+            <form hidden class="py-1 col-12" id="newCommentForm">
+                <div class="form-group">
+                    <label for="comment">Comment</label>
+                    <input type="text" class="form-control" id="comment">
+                </div>
+                <button type="submit" class="btn btn-dark btn-block">Submit</button>
+            </form>
+        </div>
 </main>
+
+<script src="/js/addComment.js"></script>

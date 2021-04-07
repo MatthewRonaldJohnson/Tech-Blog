@@ -1,7 +1,8 @@
 const router = require('express').Router();
 const sequelize = require('../config/connection');
 const { User, Post, Comment } = require('../models')
-const checkAuth = require('../utils/checkAuth')
+const checkAuth = require('../utils/checkAuth');
+const prevAuth = require('../utils/prevAuth')
 
 //homepage
 router.get('/', async (req, res) => {
@@ -23,7 +24,7 @@ router.get('/', async (req, res) => {
     res.render('homepage', { cleanPostData, loggedIn: req.session.userId? true:false })
 })
 
-router.get('/login', (req, res) => {
+router.get('/login', prevAuth, (req, res) => {
     if (req.session.loggedIn) {
         res.redirect('/');
         return;
@@ -62,7 +63,7 @@ router.get('/post/:id', checkAuth, async (req, res) => {
     }
 
 
-    res.render('postpage', { post, comments })
+    res.render('postpage', { post, comments, loggedIn: req.session.userId? true:false  })
 })
 
 module.exports = router;

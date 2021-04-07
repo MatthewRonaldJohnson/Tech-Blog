@@ -39,6 +39,7 @@ router.get('/:id', async (req, res) => {
 })
 
 router.post('/', async (req, res) => {
+    req.body.user_id = req.session.userId;
     const newCommentData = await Comment.create(req.body)
     res.json(newCommentData)
 })
