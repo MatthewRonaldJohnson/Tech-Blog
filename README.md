@@ -15,10 +15,10 @@ In this app users can create an account, log in, create posts, comment on posts,
 ## Screenshots
 
 A view of the homepage while on desktop  
-![Desktop View Homepage](assests\img\Desktop-Homepage.PNG)
+![Desktop View Homepage](https://raw.githubusercontent.com/MatthewRonaldJohnson/Tech-Blog/main/assests/img/Desktop-Homepage.PNG)
 
 A view of the dashboard while on desktop  
-![Desktop View Dashboard](assests\img\Desktop-Dashboard.PNG)
+![Desktop View Dashboard](https://raw.githubusercontent.com/MatthewRonaldJohnson/Tech-Blog/main/assests/img/Desktop-Dashboard.PNG)
 
 A view of a single post's page while on mobile   
-![Mobile View Post Page](assests\img\Mobile-Post.PNG)
+![Mobile View Post Page](https://raw.githubusercontent.com/MatthewRonaldJohnson/Tech-Blog/main/assests/img/Mobile-Post.PNG)
