@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const { Post, Comment, User } = require('../../models')
 const checkAuth = require('../../utils/checkAuth')
+const checkOwn = require('../../utils/checkOwn')
 
 router.post('/', checkAuth, async (req, res) => {
     req.body.user_id = req.session.userId;
@@ -8,12 +9,11 @@ router.post('/', checkAuth, async (req, res) => {
     res.json(newPostData.id)
 })
 
-router.delete('/:id', checkAuth, async (req, res) => {
+router.delete('/:id', checkAuth, checkOwn, async (req, res) => {
     const deletedPost = await Post.destroy({ where: { id: req.params.id } })
     res.json(deletedPost)
 })
 
-//add put route?
 router.put('/', checkAuth, async (req, res) => {
     const updatedPost = await Post.update(req.body, {
         where: {
