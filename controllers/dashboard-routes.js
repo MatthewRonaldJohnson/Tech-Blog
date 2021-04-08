@@ -1,7 +1,6 @@
 const { Post, User } = require('../models');
 const sequelize = require('../config/connection')
 const checkAuth = require('../utils/checkAuth')
-const checkOwn = require('../utils/checkOwn')
 
 const router = require('express').Router();
 
@@ -23,7 +22,7 @@ router.get('/newPost', checkAuth, (req,res) => {
     res.render('newPost')
 })
 
-router.get('/updatePost/:id', checkAuth, checkOwn, async (req,res) => {
+router.get('/updatePost/:id', checkAuth, async (req,res) => {
     const postData = await Post.findByPk(req.params.id, {
         include: [{
             model: User,
