@@ -14,5 +14,13 @@ router.delete('/:id', checkAuth, async (req, res) => {
 })
 
 //add put route?
+router.put('/', checkAuth, async (req, res) => {
+    const updatedPost = await Post.update(req.body, {
+        where: {
+            id: req.body.id,
+        }
+    })
+    res.json(updatedPost)
+})
 
 module.exports = router;

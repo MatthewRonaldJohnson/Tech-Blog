@@ -22,5 +22,21 @@ router.get('/newPost', checkAuth, (req,res) => {
     res.render('newPost')
 })
 
+//add middle ware to confirm ownership
+router.get('/updatePost/:id', checkAuth, async (req,res) => {
+    const postData = await Post.findByPk(req.params.id, {
+        include: [{
+            model: User,
+            attributes: ['id', 'user_name'],
+        },]
+    });
+    //serialize post data
+    const post = postData.get();
+    //pulling out user name to where handlebars can grab it
+    const user = JSON.parse(JSON.stringify(post.user));
+    post.userName = user.user_name;
+
+    res.render('updatePost', {post, loggedIn: req.session.userId? true:false  })
+})
 
 module.exports = router;
