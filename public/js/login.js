@@ -14,8 +14,10 @@ const loginFormHandler = async (event) => {
     if (response.ok) {    //send them to homepage if login successfully
       document.location.replace('/dashboard');
     } else {
-      alert(response.message);
+      alert(response.status + ': wrong username and/or password');
     }
+  } else {
+    alert('Need to provide both User Name and a Password to login')
   }
 };
 
@@ -32,7 +34,17 @@ const signupFormHandler = async (event) => {
   }
 
   if (password !== confirmPassword) {
+    document.querySelector('#signPassword').value = '';
+    document.querySelector('#confirmPassword').value ='';
     alert('Passwords do not match');
+    
+    return;
+  }
+
+  if(password.length < 8){
+    document.querySelector('#signPassword').value = '';
+    document.querySelector('#confirmPassword').value ='';
+    alert('Password must be at least 8 characters long');
     return;
   }
 
@@ -41,12 +53,12 @@ const signupFormHandler = async (event) => {
     body: JSON.stringify({ user_name: userName, password }),
     headers: { 'Content-Type': 'application/json' },
   });
-
   if (response.ok) {
     document.location.replace('/dashboard');
   } else {
-    alert(response.statusText);
+    alert('Sign Up Failed. Your chosen user name may already be in use, please try another')
   }
+
 
 };
 
