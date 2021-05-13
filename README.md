@@ -1,5 +1,4 @@
-# Tech-Blog
-Homework 14: MVC Tech Blog using express, sequelize, and handlebars 
+# Tech-Blog 
 
 ## [Deployed Application](https://mrj-tech-blog.herokuapp.com/)
 
